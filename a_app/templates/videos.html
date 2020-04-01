@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golf Tutorials</title>
+{% load static %}
+<style>
+    .wrapper {
+      display: inline-block;
+      width: 100%;
+    }
+
+    #videos {
+      /* display: inline-block; */
+    }
+
+    #pictures img{
+      width: 178%;
+      height: 695px;
+      display: inline-block;
+    }
+
+    .columnL{
+      width:50%;
+      display: inline-block
+    
+    }
+
+    .columnR {
+      display: inline-block;
+      width: 49%;
+      vertical-align: top;
+      margin-top: 16px;
+      /* text-align: center; */
+    }
+
+    .pictures img{
+        width: 100%;
+    }
+</style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Bay Area Golf</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/forum">Forum</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Video Tutorials
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="videos">Golf Tutorials</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+      <div class ="wrapper">
+        <div class="columnL">
+
+                    <div id="videos">
+                        <p>
+                          <h3>Putting Grip Tutorial</h3>
+                          <iframe width="100%" height="315" src="https://www.youtube.com/embed/rlQw_hAGQtQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                        </p>
+
+                        <p>
+                          <h3>Chipping Quick Tip</h3>
+                          <iframe width="100%" height="315" src="https://www.youtube.com/embed/GZlzLQrBYqQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                        </p>
+
+                        <p>
+                          <h3>Range Session</h3>
+                          <iframe width="100%" height="315" src="https://www.youtube.com/embed/ZnoBUMtoifg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                        </p>
+                    </div>
+        </div>
+        <div class="columnR">
+
+              <h3>Meet the instructor, Tiger Woods</h3>
+              <div class ="pictures" >
+                <!-- <p>
+                    <img src="{% static 'img/steph put.jpg'%}" />
+                </p> -->
+
+                <p>
+                    <img src="{% static 'images/tiger.jpg'%}" />
+                </p>
+
+                <p>
+                  <span>
+                    Following an outstanding junior, college, and amateur golf career, Woods turned professional in 1996 at the age of 20. By the end of April 1997, he had won three PGA Tour events in addition to his first major, the 1997 Masters, which he won by 12 strokes in a record-breaking performance. He reached number one in the world rankings for the first time in June 1997, less than a year after turning pro. Throughout the first decade of the 21st century, Woods was the dominant force in golf. He was the top-ranked golfer in the world from August 1999 to September 2004 (264 weeks) and again from June 2005 to October 2010 (281 weeks). During this time, he won 13 of golf's major championships.
+                  </span>
+                </p>
+
+                <!-- <p>
+                    <img src="{% static 'img/steph drive.jpg' %}" />
+                </p> -->
+              </div>
+        </div>
+    </div>
+
+  
+  </body>
+</html>

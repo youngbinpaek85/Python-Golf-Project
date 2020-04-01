@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta http-equiv="content-type" content="text/html; charset=ANSI" />
+    <title>Home</title>
+    <style>
+        /* Set the size of the div element that contains the map */
+        .background {
+            background-image: url(static/images/pebble6.png);
+            background-size: contain;
+        }
+
+        #wrapper {
+            background-color: rgb(81, 153, 235);
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        #map {
+            display: inline-block;
+
+        }
+
+        #video {
+            display: inline-block;
+        }
+
+        .intro {
+            margin-top: 10px;
+            background-color: white;
+            opacity: .9;
+            width: 1200px;
+            height: auto;
+            margin: 0 auto;
+            border-style: solid;
+            border-width: 4px;
+            border-color: rgb(81, 153, 235);
+
+        }
+
+
+        #pic img {
+            height: 400px;
+            width: 100%;
+        }
+        .contacts{
+            background-color: white;
+            width: 100%;
+            height: auto;
+            height: 140px;
+            padding-top: 10px;
+            padding-left: 10px;
+            opacity: .8;
+            width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+    {% load static %}
+    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Bay Area Golf</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/forum">Forum</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Video Tutorials
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/videos">Golf Tutorials</a>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div class="background">
+        <div class="intro">
+            <h1>Bay Area Golf</h1>
+            <p>Welcome to Bay Area Golf where we provide a better experience for your next and upcoming golf trip.
+                Check
+                out
+                our top 5 course recommendations to play in the Bay Area. By clicking on the icons on the map you'll
+                be
+                redirected to golf course's website where you can check out useful information and book your next
+                tee
+                time.
+                We also provide a forum page where we discuss all topics in golf. There are also golfing tutorials
+                that are
+                updated weekly, so make sure to check them out! Thank you for choosing Bay Area Golf.</p>
+            <h1>Top 5 Courses in the SF Bay Area</h1>
+        </div>
+        <div id="wrapper">
+            <div id="map" style="width: 50%; height: 400px;">
+
+                <script type="text/javascript">
+                    var locations = [
+                        ['Pebble Beach', 36.5725, -121.9486, 1, 'https://www.pebblebeach.com/'],
+                        ['Silver Creek Country Club', 37.2666096, -121.7488381, 2, 'https://www.scvcc.com/Default.aspx?p=dynamicmodule&pageid=112&ssid=100163&vnf=1'],
+                        ['Half Moon Bay Golf', 37.434113, -122.4397945, 3, 'https://www.halfmoonbaygolf.com/?_vsrefdom=adwords&gclid=CjwKCAiAhc7yBRAdEiwAplGxXz0oJha8uGhGFdP0JyQwxPl92T8FmhMzV9PqUHx6ncrPRJ4RKsOxAhoCvuoQAvD_BwE'],
+                        ['Coyote Creek Golf', 37.192760, -121.701401, 4, 'https://www.coyotecreekgolf.com/'],
+                        ['Bayonet Golf', 36.632232420304, -121.8203328650, 5, 'https://www.bayonetblackhorse.com/club/scripts/public/public.asp?NS=PUBLIC'],
+
+
+                    ];
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 10,
+                        center: new google.maps.LatLng(37.368832, -122.036346),
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    });
+
+                    var infowindow = new google.maps.InfoWindow();
+
+                    var marker, i;
+
+                    for (i = 0; i < locations.length; i++) {
+                        marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                            map: map,
+                            url: locations[i][4]
+                        });
+
+                        google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
+                            return function () {
+                                infowindow.setContent(locations[i][0]);
+                                infowindow.open(map, marker);
+                            }
+                        })(marker, i));
+
+                        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                            return function () {
+                                infowindow.setContent(locations[i][0]);
+                                infowindow.open(map, marker);
+                                window.location.href = this.url;
+                            }
+                        })(marker, i));
+
+                    }
+                </script>
+            </div>
+            <div id="video">
+                <iframe style="width: 198%; height: 400px;" src="https://www.youtube.com/embed/3GqSM85xL78"
+                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class ="contacts">
+            <div class = "contactsL">
+            <h4>Contact Us</h4>
+            <p>bayareagolf@baygolf.com</p>
+            <p>Phone: (408)-555-1234</p>
+        </div>
+    </div>
+</body>
+
+</html>

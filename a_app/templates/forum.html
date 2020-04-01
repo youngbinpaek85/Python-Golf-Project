@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forum</title>
+  <style>
+    .header {
+      background-image: linear-gradient(to bottom, rgb(34, 105, 107) , rgb(238, 237, 237));
+      padding-left: 20px;
+    }
+
+    .main {
+      width: 90%;
+      height: auto;
+      margin: auto;
+    }
+
+    .wrapper {
+      background-image: url(static/images/pebblepic1.png);
+    }
+
+    .messagePost {
+      background-image: linear-gradient(to bottom, cadetblue , snow);
+      height: 80px;
+      width: 100%;
+      padding-top: 10px;
+      padding-left: 15px;
+      border-style: solid;
+      border-color:aquamarine;
+    }
+
+    .messagePostL {
+      display: inline-block;
+      width: 59%;
+    }
+
+    .messagePostR {
+      width: 40%;
+      display: inline-block;
+      text-align: right;
+      height: auto;
+      padding-right: 15px;
+      vertical-align: top;
+      padding-top: 3px;
+    }
+
+    .box {
+      background-color: cadetblue;
+      margin-top: 10px;
+      opacity: .95;
+      border-style: solid;
+      border-color:aquamarine;
+    }
+
+    .box p {
+      padding-left: 10px;
+      padding-top: 5px;
+    }
+
+    .messagebox {
+      width: 500px;
+    }
+
+    .commentbox {
+      width: 500px;
+      margin-left: 10px;
+    }
+
+    .createdpost {
+      margin-top: 10px;
+
+    }
+
+    .createdcomment {
+      background-color: aliceblue;
+      opacity: .9;
+      padding-bottom: 10px;
+      border-top: 3px solid aquamarine;
+    }
+
+    .x {
+      background-color: rgb(180, 109, 109);
+    }
+
+    .box a {
+      color: blue;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Bay Area Golf</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/forum">Forum</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Video Tutorials
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/videos">Golf Tutorials</a>
+        </li>
+
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+  </div>
+  <div class="wrapper">
+    <div class="header">
+      <h1>Welcome to the golf forum page, where we discuss everything about golf.</h1>
+    </div>
+    <div class="main">
+      <div class="posts">
+        <div class="messagePost">
+          <div class="messagePostL">
+            <form action='/forum' method="POST">
+              {%csrf_token%}
+              <textarea class="messagebox" name="postmessage">Create a Post</textarea>
+              <button type="submit">POST</button>
+            </form>
+          </div>
+          <div class="messagePostR">
+            <h1>Bay Area Golf</h1>
+          </div>
+        </div>
+      </div>
+      <div class="messages">
+        <div class="createdpost">
+          {% for x in message %}
+          <div class="box">
+            <p>POST: {{x.message}}({{x.message_creator.first_name}} {{x.message_creator.created_at}})</p>
+            <p><a href="/like_message/{{x.id}}">Likes {{x.liking_users.count}}</a>{{like}}</p>
+            <form class="createdcomment" action="/comment/{{x.id}}" method="POST">
+              {%csrf_token%}
+              {% for y in x.related_comments.all%}
+              <p>COMMENT: {{y.comment}}({{y.comment_creator.first_name}}{{y.comment_creator.created_at}})</p>
+              <p><a href="/like_comment/{{y.id}}">Likes {{y.liking_users.count}}</a></p>
+              {%endfor %}
+              <textarea class="commentbox" name="comment_on_message"> </textarea>
+              <p><button type="submit">Comment</button></p>
+            </form>
+          </div>
+          {%endfor%}
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
